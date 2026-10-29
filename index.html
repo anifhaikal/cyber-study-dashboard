@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Cybersecurity Study Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .activity-list { display:grid; grid-template-columns:1fr; gap:20px; }
+    .activity-card { min-height:210px; padding:23px 24px; border-radius:4px; }
+    .activity-card.blue { background:var(--blue); }
+    .activity-card.orange { background:var(--orange); }
+    .activity-card.purple { background:var(--purple); }
+    .activity-sections details { border-top:1px solid #ffffff99; padding:12px 0; }
+    .activity-sections summary { cursor:pointer; font-size:13px; font-weight:700; }
+    .activity-sections summary span { float:right; }
+    .activity-sections p { margin:12px 0 0; }
+    .activity-links { display:flex; flex-wrap:wrap; gap:14px; margin-top:18px; }
+    .activity-links a { color:#245d60; font-size:12px; overflow-wrap:anywhere; }
+    .activity-top { display:flex; justify-content:space-between; gap:15px; color:#74868a; font:9px 'DM Mono'; line-height:1.4; }
+    .activity-card h3 { margin:24px 0 12px; font-size:18px; letter-spacing:-.04em; }
+    .activity-card p { color:#5c6f74; font-size:11px; line-height:1.65; }
+    .activity-card .activity-result { padding:11px 0; border-top:1px solid #ffffff99; border-bottom:1px solid #ffffff99; }
+    .activity-card .activity-result b { color:#317d79; }
+    @media (max-width:850px) { .activity-list { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Cybersecurity Study Desk home">
+        <span class="brand-mark">CS</span>
+        <span>Cybersecurity<br><b>Study Desk</b></span>
+      </a>
+      <div class="top-meta"><span class="status-dot"></span>Local study workspace <span class="slash">/</span> Course 1</div>
+      <button class="mobile-menu" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+    </header>
+
+    <div class="app-grid" id="top">
+      <aside class="sidebar">
+        <div class="side-label">Your learning path</div>
+        <nav class="course-nav" aria-label="Course navigation">
+          <button class="nav-course active"><span class="nav-icon">01</span><span><b>Foundations</b><small>Cybersecurity</small></span><span class="chevron">⌄</span></button>
+          <div class="module-list">
+            <button class="module active" data-module="module4"><span>04</span> Tools &amp; core skills <i>now</i></button>
+            <button class="module"><span>05</span> Coming next <i>soon</i></button>
+          </div>
+          <button class="nav-course" data-module="module1"><span class="nav-icon">02</span><span><b>Play It Safe</b><small>Manage security risks</small></span><span class="chevron">›</span></button>
+          <div class="module-list">
+            <button class="module" data-module="module1"><span>01</span> Security domains <i>complete</i></button>
+            <button class="module" data-module="module2"><span>02</span> Frameworks &amp; controls <i>now</i></button>
+          </div>
+          <button class="nav-course" data-module="module3"><span class="nav-icon">03</span><span><b>Connect &amp; Protect</b><small>Networks and network security</small></span><span class="chevron">›</span></button>
+          <div class="module-list">
+            <button class="module" data-module="module3"><span>02</span> Network protocols <i>complete</i></button>
+            <button class="module" data-module="module5"><span>03</span> Network attacks <i>complete</i></button>
+            <button class="module" data-module="module6"><span>04</span> Hardening networks <i>complete</i></button>
+          </div>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="side-label">Quick access</div>
+          <a href="#glossary"><span>⌕</span> Glossary</a>
+          <a href="#questions"><span>✓</span> Review questions</a>
+          <a href="#notes"><span>＋</span> Add next module</a>
+          <div class="source-note"><span class="file-icon">TXT</span><p><b>Source notes</b><br><span id="source-name">Foundations of Cybersecurity.txt</span></p></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="hero">
+          <div class="eyebrow" id="module-label">COURSE 01 <span>•</span> MODULE 04</div>
+          <h1 id="hero-title">Tools of the<br><em>trade.</em></h1>
+          <p class="hero-copy" id="hero-copy">A focused study view of the concepts, tools, and analyst skills from your Foundations notes.</p>
+          <div class="hero-actions"><button class="primary-btn" data-scroll="#notes">Start studying <span>→</span></button><button class="text-btn" data-scroll="#questions">Test yourself <span>↗</span></button></div>
+          <div class="progress-wrap"><div class="progress-label"><span>Module progress</span><strong id="progress-value">64%</strong></div><div class="progress"><span id="progress-bar" style="width:64%"></span></div><small id="progress-note">Keep going. You have 3 topics marked for review.</small></div>
+        </section>
+
+        <section class="stats-row" aria-label="Study statistics">
+          <div class="stat"><span class="stat-number" id="concept-count">08</span><span class="stat-label">Core concepts<br><b>to know</b></span></div>
+          <div class="stat"><span class="stat-number" id="glossary-count">12</span><span class="stat-label">Glossary terms<br><b>collected</b></span></div>
+          <div class="stat"><span class="stat-number" id="question-count">06</span><span class="stat-label">Questions<br><b>to review</b></span></div>
+          <div class="stat callout"><span class="spark">✦</span><span><b>Study tip</b><br>Learn what each tool sees, stores, or does.</span></div>
+        </section>
+
+        <section class="content-section" id="notes">
+          <div class="section-heading"><div><div class="eyebrow">01 / THE BIG PICTURE</div><h2 id="concept-heading">What you should<br><em>walk away with.</em></h2></div><span class="section-note">Read time <b id="read-time">6 min</b></span></div>
+          <div class="concept-grid" id="concepts"></div>
+        </section>
+
+        <section class="content-section tools-section">
+          <div class="section-heading compact"><div><div class="eyebrow">02 / KNOW YOUR TOOLKIT</div><h2 id="tool-heading">The analyst’s toolkit.</h2></div><span class="section-note">Compare by purpose</span></div>
+          <div class="tool-table" id="tools"></div>
+        </section>
+
+        <section class="content-section activities-section" id="activities">
+          <div class="section-heading compact"><div><div class="eyebrow">03 / COURSE ACTIVITIES</div><h2 id="activity-heading">Practice in context.</h2></div><span class="section-note">Results recorded</span></div>
+          <div class="activity-list" id="activities-list"></div>
+        </section>
+
+        <section class="content-section lower-grid">
+          <div id="glossary"><div class="section-heading compact"><div><div class="eyebrow">04 / LANGUAGE</div><h2>Glossary</h2></div><span class="count-pill" id="glossary-pill">12 terms</span></div><label class="search-box"><span>⌕</span><input id="glossary-search" type="search" placeholder="Search terms..." aria-label="Search glossary terms"></label><div class="glossary-list" id="glossary-list"></div></div>
+          <div id="questions"><div class="section-heading compact"><div><div class="eyebrow">05 / ACTIVE RECALL</div><h2>Review questions</h2></div></div><p class="question-intro">Check what you remember before looking at the answer.</p><div id="question-list"></div></div>
+        </section>
+
+        <section class="next-module" id="next-module"><div><div class="eyebrow">YOUR NOTES, YOUR SYSTEM</div><h2>Ready for the next module?</h2><p>Add another module without changing the site. Each chapter gets its own summary, vocabulary, and questions.</p></div><button class="outline-btn" data-scroll="#notes">See the structure <span>→</span></button></section>
+        <footer><span>Cybersecurity Study Desk</span><span>Built from your course notes · Progress is saved in this browser</span></footer>
+      </main>
+    </div>
+  </div>
+  <script src="data.js"></script><script src="app.js"></script>
+</body>
+</html>
