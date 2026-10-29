@@ -42,6 +42,8 @@ function renderActivities() {
     </article>`).join('') : '<p class="empty">No activities recorded for this module.</p>';
 }
 
+function renderModels() { $('#models').hidden = activeModule !== 'module3'; }
+
 function renderGlossary(filter = '') {
   const moduleData = getModuleData();
   const terms = moduleData.glossary.filter(([term, definition]) => `${term} ${definition}`.toLowerCase().includes(filter.toLowerCase()));
@@ -57,7 +59,7 @@ function renderQuestions() {
   $('#glossary-pill').textContent = `${getModuleData().glossary.length} terms`;
 }
 
-function renderModule() { renderModuleChrome(); renderConcepts(); renderTools(); renderActivities(); renderGlossary($('#glossary-search').value); renderQuestions(); }
+function renderModule() { renderModuleChrome(); renderConcepts(); renderModels(); renderTools(); renderActivities(); renderGlossary($('#glossary-search').value); renderQuestions(); }
 
 function setupInteractions() {
   $('#glossary-search').addEventListener('input', (event) => renderGlossary(event.target.value));
