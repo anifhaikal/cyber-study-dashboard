@@ -12,9 +12,6 @@ function renderModuleChrome() {
   $('#module-label').innerHTML = isPlayItSafe ? `COURSE 02 <span>•</span> MODULE 0${isModule2 ? '2' : '1'}` : isModule6 ? 'COURSE 03 <span>•</span> MODULE 04' : isModule5 ? 'COURSE 03 <span>•</span> MODULE 03' : isModule3 ? 'COURSE 03 <span>•</span> MODULE 02' : 'COURSE 01 <span>•</span> MODULE 04';
   $('#hero-title').innerHTML = isModule6 ? 'Harden the<br><em>network.</em>' : isModule5 ? 'Defend the<br><em>network.</em>' : isModule3 ? 'Connect &<br><em>protect.</em>' : isModule2 ? 'Frameworks &<br><em>controls.</em>' : isPlayItSafe ? 'Play it<br><em>safe.</em>' : 'Tools of the<br><em>trade.</em>';
   $('#hero-copy').textContent = isModule6 ? 'A focused study view of brute force prevention, network hardening, cloud security, cryptography, and NIST response planning.' : isModule5 ? 'A focused study view of packet analysis, denial-of-service attacks, packet sniffing, and IP spoofing.' : isModule3 ? 'A focused study view of network protocols, wireless security, firewalls, proxies, and VPNs.' : isModule2 ? 'A focused study view of frameworks, controls, NIST functions, OWASP principles, and security audits.' : isPlayItSafe ? 'A focused study view of security domains, risk management, and the threats analysts learn to manage.' : 'A focused study view of the concepts, tools, and analyst skills from your Foundations notes.';
-  $('#progress-value').textContent = isPlayItSafe || isModule3 || isModule5 || isModule6 ? '100%' : '64%';
-  $('#progress-bar').style.width = isPlayItSafe || isModule3 || isModule5 || isModule6 ? '100%' : '64%';
-  $('#progress-note').textContent = isModule6 ? 'Your selected Chapter 3, Module 4 notes are organized here.' : isModule5 ? 'Your selected Chapter 3, Module 3 notes are organized here.' : isModule3 ? 'Your selected Chapter 3, Module 2 notes are organized here.' : isModule2 ? 'Your selected Chapter 2, Module 2 notes are organized here.' : isPlayItSafe ? 'Your selected Chapter 2, Module 1 notes are organized here.' : 'Keep going. You have 3 topics marked for review.';
   $('#concept-heading').innerHTML = isModule6 ? 'Build layers.<br><em>Reduce exposure.</em>' : isModule5 ? 'Read the traffic.<br><em>Recognize the attack.</em>' : isModule3 ? 'Networks that<br><em>connect and protect.</em>' : isModule2 ? 'Frameworks that<br><em>make security actionable.</em>' : isPlayItSafe ? 'The <em>CISSP domains.</em>' : 'What you should<br><em>walk away with.</em>';
   $('#tool-heading').textContent = isModule6 ? 'Hardening and monitoring toolkit.' : isModule5 ? 'Tools for network investigation.' : isModule3 ? 'Protocols and network defenses.' : isModule2 ? 'Frameworks, controls, and audits.' : isPlayItSafe ? 'Frameworks and practices.' : 'The analyst’s toolkit.';
   $('#activity-heading').textContent = isModule6 ? 'Build the incident response plan.' : isModule5 ? 'Practice in context.' : 'Practice activities.';
@@ -79,6 +76,10 @@ function setupInteractions() {
     else if (module && module.textContent.includes('Coming next')) showToast('The next module is ready for your notes.');
   });
   $('.mobile-menu').addEventListener('click', () => { const open = $('.sidebar').classList.toggle('open'); $('.mobile-menu').setAttribute('aria-expanded', open); });
+  $('.main-content').addEventListener('click', () => {
+    $('.sidebar').classList.remove('open');
+    $('.mobile-menu').setAttribute('aria-expanded', 'false');
+  });
 }
 
 function showToast(message) { const toast = document.createElement('div'); toast.className = 'toast'; toast.textContent = message; document.body.append(toast); setTimeout(() => toast.remove(), 2600); }

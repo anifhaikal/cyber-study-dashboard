@@ -26,7 +26,41 @@
     .activity-card p { color:#5c6f74; font-size:11px; line-height:1.65; }
     .activity-card .activity-result { padding:11px 0; border-top:1px solid #ffffff99; border-bottom:1px solid #ffffff99; }
     .activity-card .activity-result b { color:#317d79; }
+    .model-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .model-card { padding:28px; border-radius:5px; }
+    .tcp-model { background:#e7e0f2; }.osi-model { background:#dcecdf; }
+    .model-label { color:#6c8588; font:500 9px 'DM Mono'; letter-spacing:.14em; }
+    .model-card h3 { margin:13px 0 10px; font-size:25px; letter-spacing:-.05em; }
+    .model-intro { color:#5c6f74; font-size:12px; line-height:1.7; }
+    .layer-stack { display:grid; gap:6px; margin:22px 0 26px; }
+    .layer-stack div { padding:12px 14px; border-left:4px solid #6f9b98; background:#ffffff99; }
+    .layer-stack b { display:block; color:#285f61; font-size:12px; }
+    .layer-stack span { display:block; margin-top:5px; color:#65767a; font-size:10px; line-height:1.7; }
+    .model-card h4 { margin:20px 0 10px; color:#285f61; font-size:14px; }
+    .scenario-list { margin:0; padding-left:22px; color:#5c6f74; font-size:11px; line-height:1.65; }
+    .scenario-list li { padding:4px 0; }
+    @media (max-width:850px) { .model-grid { grid-template-columns:1fr; } }
     @media (max-width:850px) { .activity-list { grid-template-columns:1fr; } }
+    @media (max-width:850px) {
+      .topbar { height:64px; padding:0 16px; }
+      .app-grid { min-height:calc(100vh - 64px); }
+      .sidebar { top:64px; width:min(82vw,300px); max-width:100%; max-height:calc(100vh - 64px); overflow-y:auto; padding:24px 16px 26px; transform:translateX(-105%); }
+      .sidebar.open { transform:none; }
+      .nav-course { grid-template-columns:29px minmax(0,1fr) 15px; }
+      .module-list { margin-left:38px; padding-left:10px; }
+      .module { white-space:normal; line-height:1.35; }
+      .sidebar-bottom { margin-top:35px; }
+      .hero { padding:48px 22px 36px; }
+      .content-section { padding-left:22px; padding-right:22px; }
+      .next-module { margin-left:22px; margin-right:22px; }
+    }
+    @media (max-width:480px) {
+      .model-card { padding:20px 17px; }
+      .model-card h3 { font-size:22px; }
+      .layer-stack div { padding:10px 11px; }
+      .layer-stack b { font-size:11px; }
+      .layer-stack span, .scenario-list { font-size:10px; }
+    }
   </style>
 </head>
 <body>
@@ -46,19 +80,19 @@
         <nav class="course-nav" aria-label="Course navigation">
           <button class="nav-course active"><span class="nav-icon">01</span><span><b>Foundations</b><small>Cybersecurity</small></span><span class="chevron">⌄</span></button>
           <div class="module-list">
-            <button class="module active" data-module="module4"><span>04</span> Tools &amp; core skills <i>now</i></button>
-            <button class="module"><span>05</span> Coming next <i>soon</i></button>
+            <button class="module active" data-module="module4"><span>04</span> Tools &amp; core skills</button>
+            <button class="module"><span>05</span> Coming next</button>
           </div>
           <button class="nav-course" data-module="module1"><span class="nav-icon">02</span><span><b>Play It Safe</b><small>Manage security risks</small></span><span class="chevron">›</span></button>
           <div class="module-list">
-            <button class="module" data-module="module1"><span>01</span> Security domains <i>complete</i></button>
-            <button class="module" data-module="module2"><span>02</span> Frameworks &amp; controls <i>now</i></button>
+            <button class="module" data-module="module1"><span>01</span> Security domains</button>
+            <button class="module" data-module="module2"><span>02</span> Frameworks &amp; controls</button>
           </div>
           <button class="nav-course" data-module="module3"><span class="nav-icon">03</span><span><b>Connect &amp; Protect</b><small>Networks and network security</small></span><span class="chevron">›</span></button>
           <div class="module-list">
-            <button class="module" data-module="module3"><span>02</span> Network protocols <i>complete</i></button>
-            <button class="module" data-module="module5"><span>03</span> Network attacks <i>complete</i></button>
-            <button class="module" data-module="module6"><span>04</span> Hardening networks <i>complete</i></button>
+            <button class="module" data-module="module3"><span>02</span> Network protocols</button>
+            <button class="module" data-module="module5"><span>03</span> Network attacks</button>
+            <button class="module" data-module="module6"><span>04</span> Hardening networks</button>
           </div>
         </nav>
         <div class="sidebar-bottom">
@@ -75,8 +109,6 @@
           <div class="eyebrow" id="module-label">COURSE 01 <span>•</span> MODULE 04</div>
           <h1 id="hero-title">Tools of the<br><em>trade.</em></h1>
           <p class="hero-copy" id="hero-copy">A focused study view of the concepts, tools, and analyst skills from your Foundations notes.</p>
-          <div class="hero-actions"><button class="primary-btn" data-scroll="#notes">Start studying <span>→</span></button><button class="text-btn" data-scroll="#questions">Test yourself <span>↗</span></button></div>
-          <div class="progress-wrap"><div class="progress-label"><span>Module progress</span><strong id="progress-value">64%</strong></div><div class="progress"><span id="progress-bar" style="width:64%"></span></div><small id="progress-note">Keep going. You have 3 topics marked for review.</small></div>
         </section>
 
         <section class="stats-row" aria-label="Study statistics">
@@ -89,6 +121,39 @@
         <section class="content-section" id="notes">
           <div class="section-heading"><div><div class="eyebrow">01 / THE BIG PICTURE</div><h2 id="concept-heading">What you should<br><em>walk away with.</em></h2></div><span class="section-note">Read time <b id="read-time">6 min</b></span></div>
           <div class="concept-grid" id="concepts"></div>
+        </section>
+
+        <section class="content-section models-section" id="models">
+          <div class="section-heading"><div><div class="eyebrow">02 / NETWORK MODELS</div><h2>How network communication<br><em>moves layer by layer.</em></h2></div><span class="section-note">Reference models</span></div>
+          <div class="model-grid">
+            <article class="model-card tcp-model">
+              <div class="model-label">PRACTICAL MODEL</div><h3>TCP/IP model</h3>
+              <p class="model-intro">The TCP/IP model describes how the internet actually moves data. It has four layers. Data moves down the sender’s stack, crosses the network, then moves up the receiver’s stack.</p>
+              <div class="layer-stack tcp-stack">
+                <div><b>4 · Application</b><span>Purpose: provides network services directly to software such as browsers, email clients, and remote administration tools. What happens: DNS resolves names, HTTPS carries web requests, and SSH carries secure shell commands. Data is represented as application messages. Security focus: validate protocols, certificates, authentication, and application-layer input because attacks can exploit services such as insecure HTTP or DNS.</span></div>
+                <div><b>3 · Transport</b><span>Purpose: creates communication between applications on two devices and separates services with port numbers. What happens: TCP performs a three-way handshake, numbers data, retransmits missing segments, and controls flow; UDP sends datagrams without establishing a connection. Data is represented as segments for TCP or datagrams for UDP. Security focus: inspect ports, unexpected listeners, connection floods, and abuse such as SYN floods.</span></div>
+                <div><b>2 · Internet</b><span>Purpose: provides logical addressing and moves packets between networks. What happens: IP adds source and destination addresses and routers choose the next hop; ICMP reports delivery errors and supports diagnostics such as ping. Data is represented as IP packets or datagrams. Security focus: investigate spoofed addresses, unexpected routes, ICMP floods, and suspicious traffic crossing network boundaries.</span></div>
+                <div><b>1 · Network Access</b><span>Purpose: delivers data across the local link and converts packets into frames and physical signals. What happens: Ethernet or Wi-Fi adds local MAC addresses, ARP maps an IP address to a local MAC address, and a cable, fiber, or radio transmits bits. Data is represented as frames and bits. Security focus: protect wireless access, monitor ARP manipulation, secure switches, and restrict unauthorized devices.</span></div>
+              </div>
+              <h4>Scenario: opening an HTTPS website</h4>
+              <ol class="scenario-list"><li><b>Application:</b> DNS resolves the domain; HTTPS creates the web request.</li><li><b>Transport:</b> TCP uses a three-way handshake and port 443 carries the HTTPS stream.</li><li><b>Internet:</b> IP addresses route packets between your device, router, and web server.</li><li><b>Network Access:</b> Wi-Fi or Ethernet frames carry each packet to the next device; ARP finds the local gateway’s MAC address.</li></ol>
+            </article>
+            <article class="model-card osi-model">
+              <div class="model-label">REFERENCE MODEL</div><h3>OSI model</h3>
+              <p class="model-intro">The OSI model is a seven-layer framework for learning, designing, and troubleshooting networks. It separates responsibilities so an analyst can identify where a failure occurs.</p>
+              <div class="layer-stack osi-stack">
+                <div><b>7 · Application</b><span>Purpose: gives user applications access to network services. What happens: a browser creates an HTTPS request, an email client uses SMTP or IMAP, and a DNS client asks for a name resolution. Data is application data. Security focus: authentication, authorization, secure protocols, input validation, and protection against application-layer attacks.</span></div>
+                <div><b>6 · Presentation</b><span>Purpose: makes data understandable and safe for the receiving system. What happens: data is translated into a common format, compressed to reduce size, encrypted before transit, and decrypted or decompressed by the recipient. Data may be encoded text, compressed media, or ciphertext. Security focus: TLS encryption, certificate validation, cryptographic algorithms, and preventing weak or incorrectly implemented encryption.</span></div>
+                <div><b>5 · Session</b><span>Purpose: manages the start, continuation, and end of a conversation between applications. What happens: a session is established, kept alive, synchronized, and closed after the exchange. Examples include a logged-in web session or an active video meeting. Security focus: session IDs, timeouts, reauthentication, and preventing session hijacking or replay.</span></div>
+                <div><b>4 · Transport</b><span>Purpose: delivers data between the correct applications and manages end-to-end communication. What happens: TCP establishes a connection and provides ordering, acknowledgments, retransmission, and flow control; UDP provides faster delivery without those guarantees. Port numbers identify services. Data is represented as segments or datagrams. Security focus: port scanning, unauthorized services, denial-of-service floods, and malicious connection behavior.</span></div>
+                <div><b>3 · Network</b><span>Purpose: identifies devices across interconnected networks and chooses paths for traffic. What happens: IP adds logical addresses, routers examine destination addresses, and packets move from network to network through multiple hops. Data is represented as packets. Security focus: routing manipulation, IP spoofing, unauthorized paths, network segmentation, and filtering at firewalls.</span></div>
+                <div><b>2 · Data Link</b><span>Purpose: delivers data between devices on the same local network. What happens: packets are placed into Ethernet or Wi-Fi frames, MAC addresses identify local interfaces, and switches or access points forward frames. Error detection can identify damaged frames. Data is represented as frames. Security focus: rogue access points, MAC spoofing, ARP poisoning, VLAN weaknesses, and unauthorized switch access.</span></div>
+                <div><b>1 · Physical</b><span>Purpose: transmits raw binary bits through a physical medium. What happens: network hardware converts bits into electrical pulses on copper, light pulses in fiber, or radio waves over wireless. Connectors, antennas, cables, repeaters, and signal strength affect transmission. Data is represented as bits and signals. Security focus: cable tapping, device tampering, radio interference, physical damage, and unauthorized access to networking equipment.</span></div>
+              </div>
+              <h4>Scenario: joining a video call</h4>
+              <ol class="scenario-list"><li><b>Application:</b> The meeting app requests the call service.</li><li><b>Presentation:</b> Audio/video codecs format data and encryption protects it.</li><li><b>Session:</b> The meeting session authenticates participants and stays active.</li><li><b>Transport:</b> TCP or UDP carries control and media traffic using ports.</li><li><b>Network:</b> IP routes packets to the meeting servers and other participants.</li><li><b>Data Link:</b> Wi-Fi or Ethernet frames use MAC addresses on each local network.</li><li><b>Physical:</b> Radio, copper, or fiber carries the bits as signals.</li></ol>
+            </article>
+          </div>
         </section>
 
         <section class="content-section tools-section">

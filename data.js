@@ -26,7 +26,7 @@ const studyData = {
         { number: '03', title: 'Wireless security evolves', text: 'WEP is obsolete and high risk. WPA improved it with TKIP, WPA2 uses AES and CCMP, and WPA3 adds SAE and stronger encryption.', tag: 'WI-FI SECURITY', tone: 'purple' },
         { number: '04', title: 'Firewalls and proxies', text: 'Firewalls filter traffic by rules, stateful firewalls track connections, and NGFWs add deep packet inspection and application awareness. Proxies regulate traffic between clients and servers.', tag: 'NETWORK DEFENSE', tone: 'green' },
         { number: '05', title: 'VPNs protect transit', text: 'VPNs use encapsulation to wrap data in encrypted packets and hide a public IP address. Remote access connects a user to a VPN server; site-to-site connects networks.', tag: 'PRIVATE NETWORKS', tone: 'blue' },
-        { number: '06', title: 'Address and network translation', text: 'NAT maps private addresses to a public address, DHCP assigns IP configuration, and ARP maps local IP addresses to MAC addresses.', tag: 'NETWORK SERVICES', tone: 'orange' }
+        { number: '06', title: 'Address and network translation', text: 'NAT maps private addresses to a public address, DHCP assigns IP configuration, and ARP maps local IP addresses to MAC addresses.', tag: 'NETWORK SERVICES', tone: 'orange' },
       ],
       tools: [
         ['DNS', 'Translates domain names into IP addresses', 'Resolve website and service names'],
